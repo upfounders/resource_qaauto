@@ -3,7 +3,7 @@ Description: validate login page function
 
 Scenario: user attempt to login wihtou any cridential
 Given I have opened a browser
-When I navigate to the nopcommerce application
+When I navigate to the https://upfounders-staging.herokuapp.com/#/login
 And I navigate to login page
 And click on login button
 Then error message "Please enter your email" should be displayed
