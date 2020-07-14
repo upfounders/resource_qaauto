@@ -3,23 +3,23 @@ package stepDefinitions;
 import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import io.cucumber.java.en.*;
-import pageObject.HomePage;
 import pageObject.LoginPage;
-import pageObject.RegisterPage;
+import pageObject.AddContact;
+import pageObject.DashBoard;
 import utilities.SeleniumDriver;
 
-public class HomePageTestSteps {
+public class DashBoardTestSteps {
 	public WebDriver driver;
-	public HomePage homePage;
-	public RegisterPage registerPage;
+	public DashBoard dashboard;
+	public AddContact registerPage;
 	public LoginPage loginPage;
 	
 	
 	@Given("I open a browser")
 	public void i_open_a_browser() {
 	   driver = SeleniumDriver.getDriver();
-	   homePage = new HomePage(driver);
-	   registerPage = new RegisterPage(driver);
+	   dashboard = new DashBoard (driver);
+	   registerPage = new AddContact(driver);
 	   loginPage = new LoginPage(driver);
 	}
 
@@ -35,12 +35,12 @@ public class HomePageTestSteps {
 
 	@Then("logo should be displyed")
 	public void logo_should_be_displyed() {
-	  Assert.assertTrue(homePage.isLogodisplayed());
+	  Assert.assertTrue(dashboard.isLogodisplayed());
 	}
 	
 	@When("I click on the register link")
-	public void i_click_on_the_register_link() {
-	    homePage.goToRegisterPage();
+	public void i_click_on_the_invited_link() {
+	    dashboard.goToInvatedPage();
 	}
 
 	@Then("register page loaded and message {string} should be displayed")

@@ -7,7 +7,7 @@ import io.cucumber.junit.Cucumber;
 @RunWith(Cucumber.class)
 @CucumberOptions(
 
-		features = {"C:\\Users\\Elshat\\Documents\\eclipse-workspace\\cucumber_nopCommerce\\Features\\"},
+		features = {"C:\\Users\\aakti\\eclipse-workspace\\resource_qaauto\\Features"},
 		glue = {"stepDefinitions"},
 		plugin = {"pretty", "html:test-out"},
 		monochrome = true

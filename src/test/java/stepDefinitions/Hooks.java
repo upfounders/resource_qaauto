@@ -25,7 +25,7 @@ public class Hooks {
 	@Before
 	public void beforeScenario(Scenario scenario) {
 		if(!isReporterRunning) {
-			customeExtentReport = new CustomeExtentReport("C:\\Users\\Elshat\\Documents\\eclipse-workspace\\cucumber_nopCommerce\\target\\ExtentReport.html");
+			customeExtentReport = new CustomeExtentReport("C:\\Users\\aakti\\eclipse-workspace\\resource_qaauto\\target\\ExtentReport.html");
 			isReporterRunning = true;
 		}
 	}
@@ -33,7 +33,7 @@ public class Hooks {
 	@After
 	public void afterScenario(Scenario scenario) throws IOException {
 		WebDriver driver=SeleniumDriver.getDriver();
-		String screenShotFile = "C:\\Users\\Elshat\\Documents\\eclipse-workspace\\cucumber_nopCommerce\\target\\" + scenario.getName().replaceAll("", "") + ".jpg";
+		String screenShotFile = "C:\\Users\\aakti\\eclipse-workspace\\resource_qaauto\\target" + scenario.getName().replaceAll("", "") + ".jpg";
 		if(scenario.isFailed()) {
 			 byte[] screenshotBytes = ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
              scenario.embed(screenshotBytes, "image/png");

@@ -12,30 +12,31 @@ public class LoginPage {
 	
 	public LoginPage(WebDriver driver) {
 		this.driver = driver;
+	
 		PageFactory.initElements(driver, this);
 	}
 	
-	@FindBy(how=How.ID,using="Email")
-	WebElement id;
+	@FindBy(xpath = "//input[contains(@name,'username')]")
+	WebElement email;
 	
-	@FindBy(how=How.ID,using="Password")
+	@FindBy(xpath = "//input[contains(@name,'password')]")
 	WebElement password;
 	
-	@FindBy(how=How.XPATH,using="//input[@value='Log in']")
+	@FindBy(xpath = "//button[contains(@id,'submit')]")
 	WebElement loginBtn;
 	
-	@FindBy(how=How.XPATH,using="//span[@id='Email-error']")
+	@FindBy(xpath = "//p[contains(.,'Email is required')]")
 	WebElement emptyCridentialErrorMessage;
 	
-	@FindBy(how=How.XPATH,using="//span[contains(@id,'Email-error')]")
+	@FindBy(xpath = "//p[@class='small ng-star-inserted']")
 	WebElement wrongEmailFormatErroMessage;
 	
-	@FindBy(how=How.XPATH,using="//div[@class='message-error validation-summary-errors']")
+	@FindBy(xpath = "//p[contains(.,'Email / password is incorrect')]")
 	WebElement wrongPasswordErrorMessage;
 	
 	
-	public void setUserName(String userName) {
-		id.sendKeys(userName);
+	public void setUserName(String userEmail) {
+		email.sendKeys(userEmail);
 	}
 	
 	public void setPassword(String userPassword) {
@@ -54,8 +55,8 @@ public class LoginPage {
 		return wrongPasswordErrorMessage.getText();
 	}
 
-	public HomePage clickOnLoginBtn() {
+	public DashBoard clickOnLoginBtn() {
 		loginBtn.click();
-		return new HomePage(driver);
+		return new DashBoard(driver);
 	}
 }

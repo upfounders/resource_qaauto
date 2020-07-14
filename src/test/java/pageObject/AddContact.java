@@ -6,11 +6,11 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 import org.openqa.selenium.support.PageFactory;
 
-public class RegisterPage {
+public class AddContact {
 	
 	public WebDriver driver;
 	
-	public RegisterPage(WebDriver driver) {
+	public AddContact(WebDriver driver) {
 		this.driver = driver;
 		PageFactory.initElements(driver, this);
 	}
@@ -117,9 +117,9 @@ public class RegisterPage {
 		return registerSuccessMessage.getText();
 	}
 	
-	public HomePage clickOnContinue() {
+	public DashBoard clickOnContinue() {
 		continuewBtn.click();
-		return new HomePage(driver);
+		return new DashBoard(driver);
 	}
 
 

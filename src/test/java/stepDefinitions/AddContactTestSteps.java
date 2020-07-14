@@ -5,31 +5,34 @@ import java.util.Map;
 import org.junit.Assert;
 import org.openqa.selenium.WebDriver;
 import io.cucumber.java.en.*;
-import pageObject.HomePage;
 import pageObject.LoginPage;
-import pageObject.RegisterPage;
+import pageObject.AddContact;
+import pageObject.DashBoard;
 import utilities.SeleniumDriver;
 
-public class RegisterPageTestSteps {
+public class AddContactTestSteps {
 	
 	public WebDriver driver;
-	public HomePage homePage;
+	
 	public LoginPage loginPage;
-	public RegisterPage registerPage;
+	public AddContact registerPage;
+	private DashBoard dashboard;
 	
 	
 	@Given("I open the application")
 	public void i_open_the_application() {
 		driver = SeleniumDriver.getDriver();
-		homePage = new HomePage(driver);
-		registerPage = new RegisterPage(driver);
+		dashboard = new DashBoard(driver);
+		registerPage = new AddContact(driver);
 		loginPage = new LoginPage(driver);
 	}
 
 	@Given("navigate to register page")
 	public void navigate_to_register_page() throws Exception {
 		SeleniumDriver.openPage();
-		homePage.goToRegisterPage();
+		
+		// ve need to add new method for adding user
+		dashboard.goToInvatedPage();
 		Thread.sleep(2000);
 	}
 

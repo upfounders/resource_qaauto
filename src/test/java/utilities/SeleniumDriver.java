@@ -28,8 +28,8 @@ public class SeleniumDriver {
 		FileInputStream fis;
 		
 		try {
-			fis = new FileInputStream("C:\\Users\\Elshat\\Documents\\eclipse-workspace"
-					+ "\\cucumber_nopCommerce\\ConfigFiles\\config.properties");
+			fis = new FileInputStream("C:\\Users\\aakti\\eclipse-workspace\\resource_qaauto"
+					+ "\\ConfigFiles\\config.properties");
 			prop.load(fis);
 		} catch(FileNotFoundException e) {
 			e.printStackTrace();
