@@ -5,21 +5,21 @@ Scenario: user attempt to login wihtout any cridential
 Given I have opened a browser
 When I navigate to the resourceful application
 And click on login button
-Then error message "Please enter your email" should be displayed
+Then empty email error message "Email is required" should be displayed
 
 Scenario: user enter wrong email format
 Given I have opened a browser
 When I navigate to the resourceful application
 And I enter user name "mytest$outlook.com"
 And click on login button
-Then error message "Wrong email" should be displayed
+Then error message "Invalid email" should be displayed
 
 Scenario: user attempt to login without password
 Given I have opened a browser
 When I navigate to the resourceful application
-And I enter user name "john12.wayne@yahoo.com"
+And I enter user name "abd.akti@gmail.com"
 And click on login button
-Then login failure message "Login was unsuccessful." should be displayed
+Then login failure message "Password is required" should be displayed
 
 Scenario Outline: verify registered accounts
 Given I have opened a browser
@@ -33,9 +33,6 @@ And I click on logout link
 Examples:
 |email                     |password   |
 |abd.akti@gmail.com        |Mavibeyaz25|
-|abd.akti1@gmail.com       |Mavibeyaz26|
-|projectibrahim25@gmail.com|Mavibeyaz27|
-
 
 
 

@@ -19,36 +19,43 @@ public class LoginPage {
 	@FindBy(xpath = "//input[contains(@name,'username')]")
 	WebElement email;
 	
-	@FindBy(xpath = "//input[contains(@name,'password')]")
+	@FindBy(xpath = "//input[contains(@type,'password')]")
 	WebElement password;
 	
 	@FindBy(xpath = "//button[contains(@id,'submit')]")
 	WebElement loginBtn;
 	
-	@FindBy(xpath = "//p[contains(.,'Email is required')]")
-	WebElement emptyCridentialErrorMessage;
+	@FindBy(xpath = "//p[@class='small'][contains(.,'Email is required')]")
+	WebElement emptyEmailErrorMessage;
 	
-	@FindBy(xpath = "//p[@class='small ng-star-inserted']")
-	WebElement wrongEmailFormatErroMessage;
+	@FindBy(xpath = "//p[contains(.,'Invalid email')]")
+	WebElement wrongEmailFormatErrorMessage;
 	
 	@FindBy(xpath = "//p[contains(.,'Email / password is incorrect')]")
 	WebElement wrongPasswordErrorMessage;
 	
+	@FindBy(xpath = "//p[contains(.,'Password is required')]")
+	WebElement emptypassword;
 	
 	public void setUserName(String userEmail) {
 		email.sendKeys(userEmail);
 	}
-	
+	//need to be fixed 
 	public void setPassword(String userPassword) {
 		password.sendKeys(userPassword);
 	}
-	
-	public String captureLoginError() {
-		return emptyCridentialErrorMessage.getText();
+	//need to be fixed
+	public String captureLoginErrorwithemptyEmail() {
+		return emptyEmailErrorMessage.getText();
 	}
-	
-	public String captureWrongEmailFormatError() {
-		return wrongEmailFormatErroMessage.getText();
+	//need to be fixed
+		public String captureLoginErrorwithemptypassword() {
+			return emptypassword.getText();
+		}
+	public String captureWrongEmailFormatError() throws Exception {
+		Thread.sleep(2000);
+		
+		return wrongEmailFormatErrorMessage.getText();
 	}
 	
 	public String captureFailedLoginMessage() {
