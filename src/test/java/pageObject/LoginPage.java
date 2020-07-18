@@ -1,5 +1,10 @@
 package pageObject;
 
+
+//akti --- need to add one more test case with logining app with google, 
+//with window hendler after opening new window, we need to loging valid google account with valid credentials 
+//so we can login app with valid credentials
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -25,31 +30,36 @@ public class LoginPage {
 	@FindBy(xpath = "//button[contains(@id,'submit')]")
 	WebElement loginBtn;
 	
-	@FindBy(xpath = "//p[@class='small'][contains(.,'Email is required')]")
+	@FindBy(xpath = "//p[@class='small error ng-star-inserted'][contains(.,'Email is required')]")
 	WebElement emptyEmailErrorMessage;
 	
-	@FindBy(xpath = "//p[contains(.,'Invalid email')]")
+	@FindBy(xpath = "//p[@class='small error ng-star-inserted'][contains(.,'Invalid email')]")
 	WebElement wrongEmailFormatErrorMessage;
 	
 	@FindBy(xpath = "//p[contains(.,'Email / password is incorrect')]")
 	WebElement wrongPasswordErrorMessage;
 	
-	@FindBy(xpath = "//p[contains(.,'Password is required')]")
+	@FindBy(xpath = "//p[@class='small error ng-star-inserted'][contains(.,'Password is required')]")
 	WebElement emptypassword;
+	
+	@FindBy(xpath = "//p[contains(.,'Invalid email')]")
+	WebElement notFound;
 	
 	public void setUserName(String userEmail) {
 		email.sendKeys(userEmail);
 	}
-	//need to be fixed 
+
 	public void setPassword(String userPassword) {
 		password.sendKeys(userPassword);
 	}
-	//need to be fixed
-	public String captureLoginErrorwithemptyEmail() {
+	
+	public String captureLoginErrorwithemptyEmail() throws Exception {
+		Thread.sleep(2000);
 		return emptyEmailErrorMessage.getText();
 	}
-	//need to be fixed
-		public String captureLoginErrorwithemptypassword() {
+	
+		public String captureLoginErrorwithemptypassword() throws Exception {
+			Thread.sleep(2000);
 			return emptypassword.getText();
 		}
 	public String captureWrongEmailFormatError() throws Exception {
@@ -58,12 +68,18 @@ public class LoginPage {
 		return wrongEmailFormatErrorMessage.getText();
 	}
 	
-	public String captureFailedLoginMessage() {
+	public String captureFailedLoginMessage() throws Exception {
+		Thread.sleep(2000);
 		return wrongPasswordErrorMessage.getText();
 	}
 
 	public DashBoard clickOnLoginBtn() {
 		loginBtn.click();
 		return new DashBoard(driver);
+	}
+
+	public String captureNoAccountMessage() throws Exception {
+		Thread.sleep(2000);
+		return notFound.getText();
 	}
 }

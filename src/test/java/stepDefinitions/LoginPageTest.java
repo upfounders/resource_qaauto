@@ -61,15 +61,21 @@ public void login_failure_message_should_be_displayed(String loginFailureMessage
 	Assert.assertEquals(loginPage.captureLoginErrorwithemptypassword(),loginFailureMessage );
 }
 
+@Then("not account found {string} should be displayed")
+public void not_account_found_should_be_displayed(String noAccountMessage) throws Exception {
+   
+	Thread.sleep(2000);
+	Assert.assertEquals(loginPage.captureNoAccountMessage(),noAccountMessage );
+}
+
+
+
 @When("I enter password {string}")
 public void i_enter_password(String password) {
 	 loginPage.setPassword(password);
 }
 
-@Then("I am able to see logout link on home page")
-public void i_am_able_to_see_logout_link_on_home_page() {
-	 Assert.assertTrue(dashboard.isLogoutLinkDisplayed());
-}
+
 
 @Then("I click on logout link")
 public void i_click_on_logout_link() {

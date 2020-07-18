@@ -1,5 +1,11 @@
 package pageObject;
 
+
+//son metoda  addition dan sonra contact profiline giden yeri eklememiz lazim 
+
+// add contact page gitmiyor onuda fix etmek lazim 
+
+
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -15,112 +21,126 @@ public class AddContact {
 		PageFactory.initElements(driver, this);
 	}
 	
-	@FindBy(how=How.XPATH, using="//h1[contains(.,'Register')]")
+	
+	
+	@FindBy(xpath = "(//span[@class='mat-button-wrapper'][contains(.,'Add Contact')])[1]")
 	WebElement registerSectionTitle;
 	
-	@FindBy(how=How.XPATH, using="//input[@id='gender-male']")
-	WebElement genderMale;
-	
-	@FindBy(how=How.XPATH, using="//input[@id='gender-female']")
-	WebElement genderFemale;
-	
-	@FindBy(how=How.XPATH, using="//input[@id='FirstName']")
-	WebElement firstName;
-	
-	@FindBy(how=How.XPATH, using="//input[@id='LastName']")
-	WebElement lastName;
-	
-	@FindBy(how=How.XPATH, using="//select[@name='DateOfBirthDay']")
-	WebElement DoBDay;
-	
-	@FindBy(how=How.XPATH, using="//select[@name='DateOfBirthMonth']")
-	WebElement DoBMonth;
-	
-	@FindBy(how=How.XPATH, using="//select[@name='DateOfBirthYear']")
-	WebElement DoBYear;
-	
-	@FindBy(how=How.XPATH, using="//input[@id='Email']")
+	@FindBy(xpath = "//input[@id='mat-input-0']")
+	WebElement fullName;
+
+	@FindBy(xpath = "//input[contains(@formcontrolname,'email')]")
 	WebElement email;
-	
-	@FindBy(how=How.XPATH, using="//input[@name='Company']")
+
+	@FindBy(xpath = "//input[contains(@id,'mat-input-2')]")
 	WebElement companyName;
 	
-	@FindBy(how=How.XPATH, using="//input[@id='Password']")
-	WebElement password;
+	@FindBy(xpath = "//input[contains(@id,'mat-input-3')]")
+	WebElement contactTitle;
 	
-	@FindBy(how=How.XPATH, using="//input[@id='ConfirmPassword']")
-	WebElement confirmPassword;
+	@FindBy(xpath = "//input[contains(@id,'mat-input-4')]")
+	WebElement phonenumber;
 	
-	@FindBy(how=How.XPATH, using="//input[@id='register-button']")
-	WebElement registerBtn;
+
+	@FindBy(xpath = "//input[contains(@id,'mat-input-5')]")
+	WebElement linkedInUrl;
 	
-	@FindBy(how=How.XPATH,using="//div[@class='result']")
-	WebElement registerSuccessMessage;
 	
-	@FindBy(how=How.XPATH,using="//input[@value='Continue']")
-	WebElement continuewBtn;
+	@FindBy(xpath = "//input[contains(@id,'mat-input-6')]")
+	WebElement locationCity;
+	
+	@FindBy(xpath = "//input[contains(@id,'mat-input-6')]")
+	WebElement locationState;
+	
+	@FindBy(xpath = "//input[contains(@id,'mat-input-6')]")
+	WebElement locationCountry;
+	
+	@FindBy(xpath = "//input[contains(@class,'text-input ng-pristine ng-valid ng-touched')]")
+	WebElement hastag;
+
+	
+	@FindBy(xpath = "//div[@class='mat-slide-toggle-thumb']")
+	WebElement togglethumb;
+	
+	
+	@FindBy(xpath = "(//span[@class='mat-button-wrapper'][contains(.,'Add Contact')])[1]")
+	WebElement Addcontactbutton;
+	
+	@FindBy(xpath = "//nav[contains(@class,'navbar navbar-expand-lg navbar-transparent  navbar-absolute fixed-top')]")
+	WebElement verifyContactAddition;
 	
 	public String getRegisterPageTitle() {		
 		return registerSectionTitle.getText();
 	}
 	
-	public void selectGenderMale() {
-		genderMale.click();
+
+	public void setFullName(String fName) {
+		fullName.sendKeys(fName);
 	}
 	
-	public void selectGenderFemale() {
-		genderFemale.click();
-	}
-	
-	public void setFirstName(String fName) {
-		firstName.sendKeys(fName);
-	}
-	
-	public void setLastName(String lName) {
-		lastName.sendKeys(lName);
-	}
-	
-	public void setDoBDay(String day) {
-		DoBDay.sendKeys(day);
+
+	public void setTitle(String title) {
+		contactTitle.sendKeys(title);
 	}
 	
 	
-	public void setDoBMonth(String month) {
-		DoBMonth.sendKeys(month);
+	public void setCity(String city) {
+		locationCity.sendKeys(city);
 	}
 	
-	public void setDoBYear(String year) {
-		DoBYear.sendKeys(year);
+	
+	public void setState(String state) {
+		locationState.sendKeys(state);
+	}
+	
+	public void setCountry(String country) {
+		locationCountry.sendKeys(country);
 	}
 	
 	public void setEmail(String userEmail) {
 		email.sendKeys(userEmail);
 	}
 	
-	public void setCompnayName(String company) {
+	public void setCompanyName(String company) {
 		companyName.sendKeys(company);
 	}
 	
-	public void setPassword(String userPassword) {
-		password.sendKeys(userPassword);
+	public void setPhonenumber(String phone) {
+		phonenumber.sendKeys(phone);
 	}
 	
-	public void setConfirmPassword(String userPassword) {
-		confirmPassword.sendKeys(userPassword);
+	public void setLinkedInUrl(String url) {
+		linkedInUrl.sendKeys(url);
 	}
 	
-	public void clickRegisterButton() {
-		registerBtn.click();
+	public void addHastag(String hastag1) {
+		
+		hastag.sendKeys(hastag1);
+		
+		hastag.click();
 	}
 	
-	public String verifyRegisterSucess() {
-		return registerSuccessMessage.getText();
+	public void slidetog() {
+		togglethumb.click();
 	}
 	
-	public DashBoard clickOnContinue() {
-		continuewBtn.click();
-		return new DashBoard(driver);
+	public void clickOnsendInvitation() {
+		Addcontactbutton.click();
+		
 	}
+
+
+	public ContactProfile verifyRegisterSucess() {
+		verifyContactAddition.getText();
+		return new ContactProfile();
+	}
+
+
+	public void clickOnContinue() {
+		// buraya addition dan sonra contact profiline giden yeri eklememiz lazim 
+		
+	}
+
 
 
 }

@@ -15,7 +15,7 @@ public class AddContactTestSteps {
 	public WebDriver driver;
 	
 	public LoginPage loginPage;
-	public AddContact registerPage;
+	public AddContact addContact;
 	private DashBoard dashboard;
 	
 	
@@ -23,15 +23,14 @@ public class AddContactTestSteps {
 	public void i_open_the_application() {
 		driver = SeleniumDriver.getDriver();
 		dashboard = new DashBoard(driver);
-		registerPage = new AddContact(driver);
+		addContact = new AddContact(driver);
 		loginPage = new LoginPage(driver);
 	}
 
 	@Given("navigate to register page")
 	public void navigate_to_register_page() throws Exception {
 		SeleniumDriver.openPage();
-		
-		// ve need to add new method for adding user
+	
 		dashboard.goToInvatedPage();
 		Thread.sleep(2000);
 	}
@@ -40,32 +39,37 @@ public class AddContactTestSteps {
 	public void i_provide_my_personal_details(io.cucumber.datatable.DataTable dataTable) throws InterruptedException {
 
 		 List<Map<String, String>> list = dataTable.asMaps(String.class, String.class);
-		 if (list.get(0).get("Gender").equalsIgnoreCase("Male")) {
-			 registerPage.selectGenderMale();
-		 } else {
-			 registerPage.selectGenderFemale();
-		 }
-		 registerPage.setFirstName(list.get(0).get("First Name"));
-		 registerPage.setLastName(list.get(0).get("Last Name"));
-		 registerPage.setDoBDay(list.get(0).get("DoB Day"));
-		 registerPage.setDoBMonth(list.get(0).get("DoB Month"));
-		 registerPage.setDoBYear(list.get(0).get("DoB Year"));
-		 registerPage.setEmail(list.get(0).get("Email"));
-		 registerPage.setCompnayName(list.get(0).get("Company Name"));
-		 registerPage.setPassword(list.get(0).get("Password"));
-		 registerPage.setConfirmPassword(list.get(0).get("Confirm Password"));
+		
+		 addContact.setFullName(list.get(0).get("Full Name"));
+		 
+		 addContact.setEmail(list.get(0).get("Email"));
+		 
+		 addContact.setCompanyName(list.get(0).get("Company"));
+		 
+		 addContact.setTitle(list.get(0).get("Title"));
+		 
+		 addContact.setCity(list.get(0).get("City"));
+		 
+		 addContact.setState(list.get(0).get("State"));
+		 
+		 addContact.setCountry(list.get(0).get("Country"));
+		
+		 addContact.setLinkedInUrl(list.get(0).get("linkedUrl"));
+		
+		 addContact.setPhonenumber(list.get(0).get("Phone"));
+		
 	}
 
 	@When("click on register button")
 	public void click_on_register_button() throws Exception {
-		registerPage.clickRegisterButton();
+		addContact.clickOnsendInvitation();;
 		Thread.sleep(2000);
 	}
 
 	@Then("I have my new account")
 	public void i_have_my_new_account() {
-		Assert.assertEquals(registerPage.verifyRegisterSucess(), "Your registration completed");
-		registerPage.clickOnContinue();
+		Assert.assertEquals(addContact.verifyRegisterSucess(), "Contact Profile");
+		addContact.clickOnContinue();
 	}
 
 

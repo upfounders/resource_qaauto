@@ -1,7 +1,11 @@
 package stepDefinitions;
 
 import org.junit.Assert;
+import org.openqa.selenium.Alert;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
 import io.cucumber.java.en.*;
 import pageObject.LoginPage;
 import pageObject.AddContact;
@@ -38,14 +42,53 @@ public class DashBoardTestSteps {
 	  Assert.assertTrue(dashboard.isLogodisplayed());
 	}
 	
-	@When("I click on the register link")
-	public void i_click_on_the_invited_link() {
-	    dashboard.goToInvatedPage();
-	}
 
-	@Then("register page loaded and message {string} should be displayed")
-	public void register_page_loaded_and_message_should_be_displayed(String pageTitle) {
-	    Assert.assertEquals(registerPage.getRegisterPageTitle(), pageTitle);
-	}
+@When("I enter the password {string}")
+public void i_enter_the_password(String rigthPassword) {
+   
+	loginPage.setPassword(rigthPassword);
+}
+
+@Then("Page title {string}  and logo should be displayed")
+public void page_title_and_logo_should_be_displayed(String dashboardTitle) {
+	Assert.assertEquals(registerPage.getRegisterPageTitle(), dashboardTitle);
+}
+
+@When("I click on invited link")
+public void i_click_on_invited_link() {
+    
+	dashboard.goToInvatedPage();
+}
+
+@Then("title of {string} should be displayed")
+public void title_of_nameofinvitee_should_be_displayed(String titleofInvitee) {
+	
+	Assert.assertEquals(dashboard.getTheinviteeTitle(), titleofInvitee); 
+
+}
+
+@When("I click on shared link")
+public void i_click_on_shared_link() {
+   dashboard.goToSharedPage();
+}
+
+@When("I click mesagging button")
+public void i_click_mesagging_button() {
+   dashboard.clickOnMesage();
+   try {
+       WebDriverWait wait = new WebDriverWait(driver, 2);
+       wait.until(ExpectedConditions.alertIsPresent());
+       Alert alert = driver.switchTo().alert();
+       alert.accept();
+   } catch (Exception e) {
+       //exception handling
+   }
+}
+
+@Then("user name {string} should be displayed")
+public void user_name_should_be_displayed(String chatterName) {
+	Assert.assertEquals(dashboard.getChatPersonName(),chatterName);
+
+}
 
 }
