@@ -25,7 +25,7 @@ public class Hooks {
 	@Before
 	public void beforeScenario(Scenario scenario) {
 		if(!isReporterRunning) {
-			customeExtentReport = new CustomeExtentReport("C:\\Users\\aakti\\eclipse-workspace\\resource_qaauto\\target\\ExtentReport.html");
+			customeExtentReport = new CustomeExtentReport("C:\\Users\\omars\\git\\resource_qaauto\\target\\ExtentReport.html");
 			isReporterRunning = true;
 		}
 	}

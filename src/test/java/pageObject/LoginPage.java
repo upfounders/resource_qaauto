@@ -1,14 +1,14 @@
 package pageObject;
 
 
+import org.openqa.selenium.WebDriver;
+
 //akti --- need to add one more test case with logining app with google, 
 //with window hendler after opening new window, we need to loging valid google account with valid credentials 
 //so we can login app with valid credentials
 
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.How;
 import org.openqa.selenium.support.PageFactory;
 
 public class LoginPage {

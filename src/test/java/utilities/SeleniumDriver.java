@@ -28,7 +28,7 @@ public class SeleniumDriver {
 		FileInputStream fis;
 		
 		try {
-			fis = new FileInputStream("C:\\Users\\aakti\\eclipse-workspace\\resource_qaauto"
+			fis = new FileInputStream("C:\\Users\\omars\\git\\resource_qaauto"
 					+ "\\ConfigFiles\\config.properties");
 			prop.load(fis);
 		} catch(FileNotFoundException e) {
