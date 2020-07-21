@@ -1,5 +1,8 @@
 package pageObject;
 
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
+
 //ben buradan check ettim mesaj ve linkleri ama daha iyi ayarlanmasi lazim 
 //sadece linklerin check edilmesi lazim 
 //bide notification partina test case yazmak lazim 
@@ -13,29 +16,38 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 import org.openqa.selenium.support.PageFactory;
 
+
 public class DashBoard {
 
 	public WebDriver driver;
 	
 	public DashBoard(WebDriver driver) {
 		
+		this.driver= driver;
+		
 		PageFactory.initElements(driver, this);
+		
 		
 	}
 	
-	@FindBy(xpath = "162")
+
+	@FindBy(xpath = "(//input)[2]" )
+	WebElement name;
+
+	
+	@FindBy(xpath = "//div/a/img")
 	WebElement logoOnHomePage;
 	
-	@FindBy(how = How.XPATH, using="//a[contains(.,'Register')]")
+	@FindBy(xpath ="//div[contains(text(),'Invited')]")
 	WebElement invitedLink;
 	
-	@FindBy(xpath = "//mat-header-cell[contains(.,'Name of Invitee')]")
+	@FindBy(xpath = "//mat-header-cell[1]")
 	WebElement inviteeTitle;
 	
-	@FindBy(how = How.XPATH, using="//a[contains(.,'Log in')]")
+	@FindBy(id ="mat-tab-label-2-2")
 	WebElement sharedLink;
 	
-	@FindBy(xpath = "//mat-header-cell[contains(.,'Shared Contact')]")
+	@FindBy(xpath = "//mat-header-row/mat-header-cell[1]")
 	WebElement sharedTitle;
 	
 	@FindBy(xpath = "//i[@class='material-icons'][contains(.,'message')]")
@@ -44,10 +56,10 @@ public class DashBoard {
 	@FindBy(xpath = "(//h5[contains(.,'Omer Faruk')])[2]")
 	WebElement chat;
 	
-	@FindBy(how = How.XPATH, using="//input[@value='Search']")
+	@FindBy(how = How.XPATH, using="(//button)[2]]")
 	WebElement adduserBtn;
 	
-	@FindBy(xpath = "//p[@class='card-category'][contains(.,'Complete the contact profile')]")
+	@FindBy(xpath = "//h4")
 	WebElement subtitleAddContact;
 	
 	@FindBy(xpath = "//p[@class='pointer nav-item'][contains(.,'Log out')]")
@@ -58,22 +70,23 @@ public class DashBoard {
 		return logoOnHomePage.isDisplayed();
 	}
 	
+ 
 	
-	/*
-	 * // public InvitedPage goToInvatedPage() { invitedLink.click(); return new
-	 * InvitedPage(driver); }
-	 */
-	
-	 public void goToInvatedPage() {
-		 invitedLink.click();
-		 
+	 public void goToInvatedPage() throws Exception {
+		 JavascriptExecutor executor = (JavascriptExecutor)driver;
+	     executor.executeScript("arguments[0].click();", driver.findElement(By.xpath("//div[contains(text(),'Invited')]/..")));
+			Thread.sleep(3000);
+		
 		 }
 	 public String getTheinviteeTitle() {
 		  return inviteeTitle.getText();
 	 }
-	
-	public void goToSharedPage() {
-		sharedLink.click();
+	 
+	public void goToSharedPage() throws Exception {
+		 JavascriptExecutor executor = (JavascriptExecutor) driver;
+		  executor.executeScript("arguments[0].click();", driver.findElement(By.xpath("//div[contains(text(),'Shared')]/..")));
+			Thread.sleep(3000);
+		
 	}
 	
 	public String getSharedTitle() {
@@ -89,15 +102,20 @@ public class DashBoard {
 		return chat.getText();
 	}
 	
-	public AddContact gotoAddContact() {
-		adduserBtn.click();
+	public AddContact gotoAddContact() throws Exception {
 		
-		return new AddContact(driver);
+		
+		JavascriptExecutor executor = (JavascriptExecutor) driver;
+		
+		executor.executeScript("arguments[0].click();", driver.findElement(By.xpath("(//button)[2]")));
+			Thread.sleep(3000);
+		
+			return new AddContact(driver);
 		
 	}
-public boolean seeLogOutLink() {
+public void seeLogOutLink() {
 		
-		return logout.getText() != null;
+		 logout.isDisplayed();
 	}
 	
 
@@ -106,6 +124,11 @@ public boolean seeLogOutLink() {
 		logout.click();
 	}
 	
+
+	public void logoOnDashboard() {
+		logoOnHomePage.isDisplayed();
+		
+	}
 	
 }
 

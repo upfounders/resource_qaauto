@@ -1,6 +1,10 @@
 package pageObject;
 
 
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.Keys;
+
 //son metoda  addition dan sonra contact profiline giden yeri eklememiz lazim 
 
 // add contact page gitmiyor onuda fix etmek lazim 
@@ -9,40 +13,47 @@ package pageObject;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-
 import org.openqa.selenium.support.PageFactory;
+
+
+
 
 public class AddContact {
 	
-	public WebDriver driver;
+public WebDriver driver;
 	
-	public AddContact(WebDriver driver) {
-		this.driver = driver;
-		PageFactory.initElements(driver, this);
-	}
+public AddContact(WebDriver driver) {
+		
+	this.driver=driver;
 	
+	PageFactory.initElements(driver, this);
 	
+}
 	
-	@FindBy(xpath = "(//span[@class='mat-button-wrapper'][contains(.,'Add Contact')])[1]")
-	WebElement registerSectionTitle;
-	
-	@FindBy(xpath = "//input[@id='mat-input-0']")
-	WebElement fullName;
 
-	@FindBy(xpath = "//input[contains(@formcontrolname,'email')]")
+    @FindBy(xpath = "(//input)[1]" )
+    WebElement uploadImg;
+	
+	@FindBy(xpath = "//h4")
+	WebElement AddContactTitle;
+	
+	@FindBy(xpath = "(//input)[2]" )
+	WebElement name;
+
+	@FindBy(xpath = "(//input)[3]" )
 	WebElement email;
 
-	@FindBy(xpath = "//input[contains(@id,'mat-input-2')]")
+	@FindBy(xpath = "(//input)[4]" )
 	WebElement companyName;
 	
-	@FindBy(xpath = "//input[contains(@id,'mat-input-3')]")
+	@FindBy(xpath = "(//input)[5]" )
 	WebElement contactTitle;
 	
-	@FindBy(xpath = "//input[contains(@id,'mat-input-4')]")
+	@FindBy(xpath = "(//input)[6]" )
 	WebElement phonenumber;
 	
 
-	@FindBy(xpath = "//input[contains(@id,'mat-input-5')]")
+	@FindBy(xpath = "(//input)[7]" )
 	WebElement linkedInUrl;
 	
 	
@@ -55,27 +66,26 @@ public class AddContact {
 	@FindBy(xpath = "//input[contains(@id,'mat-input-6')]")
 	WebElement locationCountry;
 	
-	@FindBy(xpath = "//input[contains(@class,'text-input ng-pristine ng-valid ng-touched')]")
+	@FindBy(xpath = "(//input)[9]")
 	WebElement hastag;
 
 	
-	@FindBy(xpath = "//div[@class='mat-slide-toggle-thumb']")
+	@FindBy(xpath = "(//input)[10]")
 	WebElement togglethumb;
 	
 	
 	@FindBy(xpath = "(//span[@class='mat-button-wrapper'][contains(.,'Add Contact')])[1]")
 	WebElement Addcontactbutton;
+
 	
-	@FindBy(xpath = "//nav[contains(@class,'navbar navbar-expand-lg navbar-transparent  navbar-absolute fixed-top')]")
-	WebElement verifyContactAddition;
-	
-	public String getRegisterPageTitle() {		
-		return registerSectionTitle.getText();
+	public String getAddContactPageTitle() {		
+		return AddContactTitle.getText();
 	}
 	
 
-	public void setFullName(String fName) {
-		fullName.sendKeys(fName);
+	public void setFullName(String fullName) {
+		
+		name.sendKeys(fullName);
 	}
 	
 
@@ -106,41 +116,43 @@ public class AddContact {
 	}
 	
 	public void setPhonenumber(String phone) {
-		phonenumber.sendKeys(phone);
+		
+		phonenumber.sendKeys(String.valueOf(phone));
+		
 	}
 	
 	public void setLinkedInUrl(String url) {
-		linkedInUrl.sendKeys(url);
+		
+		linkedInUrl.sendKeys(String.valueOf(url));
 	}
 	
-	public void addHastag(String hastag1) {
-		
-		hastag.sendKeys(hastag1);
-		
+	public void addHastag(String hashtag) throws InterruptedException {
 		hastag.click();
+		Thread.sleep(1000);
+		hastag.sendKeys(hashtag);
+		hastag.sendKeys(Keys.TAB);
 	}
 	
-	public void slidetog() {
-		togglethumb.click();
+	public void slidetog() throws Exception {
+		 JavascriptExecutor executor = (JavascriptExecutor) driver;
+		  executor.executeScript("arguments[0].click();", driver.findElement(By.xpath("(//input)[10]")));
+			Thread.sleep(3000);
 	}
 	
-	public void clickOnsendInvitation() {
-		Addcontactbutton.click();
+	public void clickOnsendInvitation() throws Exception {
 		
+		Addcontactbutton.submit();
 	}
 
 
-	public ContactProfile verifyRegisterSucess() {
-		verifyContactAddition.getText();
-		return new ContactProfile();
-	}
-
-
-	public void clickOnContinue() {
-		// buraya addition dan sonra contact profiline giden yeri eklememiz lazim 
+	public void uploadImg(String imgURL) {
 		
+		uploadImg.sendKeys(imgURL);
+	}
 	}
 
 
 
-}
+
+
+

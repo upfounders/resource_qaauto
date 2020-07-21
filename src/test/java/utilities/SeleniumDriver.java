@@ -28,7 +28,7 @@ public class SeleniumDriver {
 		FileInputStream fis;
 		
 		try {
-			fis = new FileInputStream("C:\\Users\\omars\\git\\resource_qaauto"
+			fis = new FileInputStream("C:\\Users\\aakti\\eclipse-workspace\\aakti_resource_qaauto"
 					+ "\\ConfigFiles\\config.properties");
 			prop.load(fis);
 		} catch(FileNotFoundException e) {
@@ -61,6 +61,7 @@ public class SeleniumDriver {
 	public static WebDriver getDriver() {
 		return driver;
 	}
+	
 	// call SeleniumDriver class's constructor
 	public static void setUp() {
 		if(seleniumDriver==null) {

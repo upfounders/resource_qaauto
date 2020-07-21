@@ -6,8 +6,8 @@ import io.cucumber.junit.Cucumber;
 
 @RunWith(Cucumber.class)
 @CucumberOptions(
-
-		features = {"C:\\Users\\omars\\git\\resource_qaauto\\Features\\loginpage.feature"},
+	
+		features = {"C:\\Users\\aakti\\eclipse-workspace\\aakti_resource_qaauto\\Features\\addcontact.feature"},
 		glue = {"stepDefinitions"},
 		plugin = {"pretty", "html:test-out"},
 		monochrome = true

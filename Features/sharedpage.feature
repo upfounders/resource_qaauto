@@ -1,8 +1,8 @@
-Feature: invited page
+Feature: Shared  Paage
 Description:invited page login page design
 
 
-Scenario: validate invited page
+Scenario: validate Shared page
 Given I open the application
 And I click on invited link
 Then Page title "Shared Contact"  and "Shared with" and "Message" and "Shared On" should be displayed

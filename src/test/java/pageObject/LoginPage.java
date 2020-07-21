@@ -1,14 +1,14 @@
 package pageObject;
 
 
-import org.openqa.selenium.WebDriver;
-
 //akti --- need to add one more test case with logining app with google, 
 //with window hendler after opening new window, we need to loging valid google account with valid credentials 
 //so we can login app with valid credentials
 
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.How;
 import org.openqa.selenium.support.PageFactory;
 
 public class LoginPage {
@@ -30,19 +30,19 @@ public class LoginPage {
 	@FindBy(xpath = "//button[contains(@id,'submit')]")
 	WebElement loginBtn;
 	
-	@FindBy(xpath = "//p[@class='small error ng-star-inserted'][contains(.,'Email is required')]")
+	@FindBy(xpath = "//form/div[1]/p")
 	WebElement emptyEmailErrorMessage;
 	
-	@FindBy(xpath = "//p[@class='small error ng-star-inserted'][contains(.,'Invalid email')]")
+	@FindBy(xpath = "//form/div/p")
 	WebElement wrongEmailFormatErrorMessage;
 	
-	@FindBy(xpath = "//p[contains(.,'Email / password is incorrect')]")
+	@FindBy(xpath = "//form/div[2]/p")
 	WebElement wrongPasswordErrorMessage;
 	
-	@FindBy(xpath = "//p[@class='small error ng-star-inserted'][contains(.,'Password is required')]")
+	@FindBy(xpath = "//form/div[2]/p")
 	WebElement emptypassword;
 	
-	@FindBy(xpath = "//p[contains(.,'Invalid email')]")
+	@FindBy(xpath = "//form/div[2]/p")
 	WebElement notFound;
 	
 	public void setUserName(String userEmail) {
@@ -73,9 +73,9 @@ public class LoginPage {
 		return wrongPasswordErrorMessage.getText();
 	}
 
-	public DashBoard clickOnLoginBtn() {
+	public void clickOnLoginBtn() {
 		loginBtn.click();
-		return new DashBoard(driver);
+
 	}
 
 	public String captureNoAccountMessage() throws Exception {

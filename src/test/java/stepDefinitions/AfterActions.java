@@ -14,10 +14,10 @@ import utilities.SeleniumDriver;
 public class AfterActions {
 	private static CustomeExtentReport customeExtentReport;
 	
-	@After
+	//@After
 	public void afterScenario(Scenario scenario) throws IOException {
 		WebDriver driver=SeleniumDriver.getDriver();
-		String screenShotFile = "C:\\Users\\omars\\git\\resource_qaauto\\target" + scenario.getName().replaceAll("", "") + ".jpg";
+		String screenShotFile = "C:\\Users\\aakti\\eclipse-workspace\\resource_qaauto\\target" + scenario.getName().replaceAll("", "") + ".jpg";
 		if(scenario.isFailed()) {
 			 byte[] screenshotBytes = ((TakesScreenshot) driver).getScreenshotAs(OutputType.BYTES);
              scenario.embed(screenshotBytes, "image/png");
@@ -29,7 +29,7 @@ public class AfterActions {
 	}
 	
 	
-	@After
+	//@After
 	public static void tearDown() {
 		SeleniumDriver.tearDown();
 	}
