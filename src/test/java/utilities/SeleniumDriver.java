@@ -28,8 +28,8 @@ public class SeleniumDriver {
 		FileInputStream fis;
 		
 		try {
-			fis = new FileInputStream("C:\\Users\\aakti\\eclipse-workspace\\aakti_resource_qaauto"
-					+ "\\ConfigFiles\\config.properties");
+			fis = new FileInputStream(
+					 "ConfigFiles\\config.properties");
 			prop.load(fis);
 		} catch(FileNotFoundException e) {
 			e.printStackTrace();
