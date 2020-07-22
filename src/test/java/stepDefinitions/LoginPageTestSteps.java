@@ -3,6 +3,7 @@ package stepDefinitions;
 import org.junit.Assert;
 import io.cucumber.java.en.*;
 import pageObject.LoginPage;
+import pageObject.ContactProfile;
 import pageObject.DashBoard;
 import utilities.SeleniumDriver;
 
@@ -13,12 +14,13 @@ public class LoginPageTestSteps {
 	public LoginPage loginPage;
 
 	private DashBoard dashboard;
+	public ContactProfile contact;
 
 @Given("I have opened a browser")
 public void i_have_opened_a_browser() {
 	
-	dashboard = new DashBoard(driver.getDriver());
-	loginPage = new LoginPage(driver.getDriver());
+	setDashboard(new DashBoard(SeleniumDriver.getDriver()));
+	loginPage = new LoginPage(SeleniumDriver.getDriver());
 
 	
 }
@@ -78,7 +80,17 @@ public void i_enter_password(String password) {
 
 @Then("I click on logout link")
 public void i_click_on_logout_link() {
-	dashboard.clickOnLogOutLink();
+	//dashboard.clickOnLogOutLink();
 }
 
+public DashBoard getDashboard() {
+	return dashboard;
+}
+
+public void setDashboard(DashBoard dashboard) {
+	this.dashboard = dashboard;
+}
+public void clickOnContactProfile() {
+	 contact.clickOncontact();
+}
 }

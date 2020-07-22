@@ -64,7 +64,8 @@ public class DashBoard {
 	
 	@FindBy(xpath = "//p[@class='pointer nav-item'][contains(.,'Log out')]")
 	WebElement logout;
-	
+	@FindBy(xpath = "(//img[@class='userImg ng-star-inserted'])[1]")
+	WebElement anyContact;
 	
 	public boolean isLogodisplayed() {
 		return logoOnHomePage.isDisplayed();
@@ -101,7 +102,9 @@ public class DashBoard {
 	public String getChatPersonName() {
 		return chat.getText();
 	}
-	
+	public void clickOnanyContact() {
+		anyContact.click();
+	}
 	public AddContact gotoAddContact() throws Exception {
 		
 		

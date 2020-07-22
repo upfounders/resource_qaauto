@@ -4,12 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import org.junit.Assert;
-import org.openqa.selenium.Alert;
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
+
 
 import io.cucumber.java.en.*;
 import pageObject.LoginPage;
@@ -28,9 +23,9 @@ public class MainTestSteps {
 
 @Given("I open the browser")
 public void i_open_the_browser() {
-	   dashboard = new DashBoard (driver.getDriver());
-	   addContact = new AddContact(driver.getDriver());
-	   loginPage = new LoginPage(driver.getDriver());
+	   dashboard = new DashBoard (SeleniumDriver.getDriver());
+	   addContact = new AddContact(SeleniumDriver.getDriver());
+	   loginPage = new LoginPage(SeleniumDriver.getDriver());
 }
 
 
@@ -52,7 +47,7 @@ public void page_title_and_logo_should_be_displayed(String pageTitle) throws Exc
 	Thread.sleep(2000);
 	Assert.assertTrue(dashboard.isLogodisplayed());
 	Thread.sleep(2000);
-	Assert.assertEquals(driver.getDriver().getTitle(), pageTitle);
+	Assert.assertEquals(SeleniumDriver.getDriver().getTitle(), pageTitle);
 	
 	
 }
@@ -157,7 +152,15 @@ public void i_have_my_new_account() throws Exception {
 	
 }
 
+@Then("I click on the first person on the dashboard")
+public void i_click_on_the_first_person_on_the_dashboard() {
+  dashboard.clickOnanyContact();
+}
 
+@Then("Page title {string} should be displayed")
+public void page_title_should_be_displayed(String string) {
+   
+}
 
 }
 
