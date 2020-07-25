@@ -29,7 +29,7 @@ public class DashBoard {
 		
 		
 	}
-	
+
 
 	@FindBy(xpath = "(//input)[2]" )
 	WebElement name;

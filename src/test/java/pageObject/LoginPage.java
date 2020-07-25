@@ -47,7 +47,7 @@ public class LoginPage {
 	
 	public void setUserName(String userEmail) {
 		email.sendKeys(userEmail);
-	}
+	} 
 
 	public void setPassword(String userPassword) {
 		password.sendKeys(userPassword);
