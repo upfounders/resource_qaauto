@@ -23,15 +23,22 @@ public class ContactProfile {
 	WebElement verifyContactAddition;
 	
 	
+	@FindBy(xpath = "//i[contains(.,'edit')]")
+	WebElement pen;
 	
-	
+	@FindBy(xpath = "(//img[@class='userImg ng-star-inserted'])[1]")
+	WebElement anyContact;
 
 	public  String verifyRegisterSucess() {
 		
 		return verifyContactAddition.getText();
 	}
-
-	
+	public void clickOncontact() {
+		anyContact.click();
+	}
+	public void clickOnpen() {
+		pen.click();
+	}
 	
 
 }

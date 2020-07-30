@@ -4,16 +4,12 @@ import java.util.List;
 import java.util.Map;
 
 import org.junit.Assert;
-import org.openqa.selenium.Alert;
-import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.WebDriverWait;
+
 
 import io.cucumber.java.en.*;
 import pageObject.LoginPage;
 import pageObject.AddContact;
+import pageObject.ChatWindow;
 import pageObject.ContactProfile;
 import pageObject.DashBoard;
 import utilities.SeleniumDriver;
@@ -25,15 +21,17 @@ public class MainTestSteps {
 	public AddContact addContact;
 	public LoginPage loginPage;
 	public ContactProfile createdProfile;
+	public ChatWindow chatWindow;
 
 	
 //dashboard test starts here
 	
 @Given("I open the browser")
 public void i_open_the_browser() {
-	   dashboard = new DashBoard (driver.getDriver());
-	   addContact = new AddContact(driver.getDriver());
-	   loginPage = new LoginPage(driver.getDriver());
+	   dashboard = new DashBoard (SeleniumDriver.getDriver());
+	   addContact = new AddContact(SeleniumDriver.getDriver());
+	   loginPage = new LoginPage(SeleniumDriver.getDriver());
+	   chatWindow = new ChatWindow(SeleniumDriver.getDriver());
 }
 //login 
 
@@ -41,7 +39,7 @@ public void i_open_the_browser() {
 public void i_navigate_to_the_resourceful_application() {
 	SeleniumDriver.openPage();
 	
-}
+} 
 
 @When("click on login button")
 public void click_on_login_button() throws Exception {
@@ -113,12 +111,13 @@ public void i_login_the_application_with_and(String userEmail, String userPasswo
 
 
 
+
 @Then("Page title {string}  and logo should be displayed")
 public void page_title_and_logo_should_be_displayed(String pageTitle) throws Exception {
 	Thread.sleep(2000);
 	Assert.assertTrue(dashboard.isLogodisplayed());
 	Thread.sleep(2000);
-	Assert.assertEquals(driver.getDriver().getTitle(), pageTitle);
+	Assert.assertEquals(SeleniumDriver.getDriver().getTitle(), pageTitle);
 	
 	
 }
@@ -223,8 +222,73 @@ public void i_have_my_new_account() throws Exception {
 	
 }
 
-
-
+@Then("I click on the first person on the dashboard")
+public void i_click_on_the_first_person_on_the_dashboard() {
+  dashboard.clickOnanyContact();
 }
 
+@Then("Page title {string} should be displayed")
+public void page_title_should_be_displayed(String string) {
+   
+}
 
+//omar  is working here
+//chatwindow
+
+	@When("I select the one from list")
+	public void i_select_the_one_from_list() throws InterruptedException {
+
+		chatWindow.clickOnDashboardContact();
+		Thread.sleep(3000);
+
+	}
+
+	@When("i go to his profile and click on mesage button")
+	public void i_go_to_his_profile_and_click_on_mesage_button() throws InterruptedException {
+		chatWindow.clickOnMessageIcon();
+		Thread.sleep(3000);
+
+	}
+
+	@When("I type {string} on field")
+	public void i_type_on_field(String string) throws InterruptedException {
+		chatWindow.writeText();
+		Thread.sleep(3000);
+		chatWindow.enterTaxt();
+		Thread.sleep(3000);
+
+	}
+
+	@Then("in the chat field {string} should be displayed")
+	public void in_the_chat_field_should_be_displayed(String string) {
+	}
+
+	@Then("logout from acount")
+	public void logout_from_acount() throws InterruptedException {
+	chatWindow.logOut();
+	Thread.sleep(3000);
+	}
+	// 2nd Scenario
+
+	@When("I click mesagging field")
+	public void i_click_mesagging_field() throws InterruptedException {
+		chatWindow.clickOnMessgeIcon2();
+		Thread.sleep(3000);
+		chatWindow.clickOnPopMIcon();
+		Thread.sleep(3000);
+	}
+
+	@When("I type {string} on text field")
+	public void i_type_on_text_field(String string) throws InterruptedException {
+		chatWindow.typeText();
+		Thread.sleep(3000);
+
+	}
+
+	@Then("send the text")
+	public void send_the_text() throws InterruptedException {
+		chatWindow.enterTaxt();
+		Thread.sleep(3000);
+	}
+
+}
