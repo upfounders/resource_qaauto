@@ -1,5 +1,5 @@
 Feature: add a new contact 
-Discription: user create a new contact on Resourceful
+Description: user create a new contact on Resourceful
 
 
 
