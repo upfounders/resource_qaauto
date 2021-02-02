@@ -14,6 +14,14 @@ And I enter user name "mytest$outlook.com"
 And click on login button
 Then error message "Invalid email" should be displayed
 
+#this is sample test case
+Scenario: user enter wrong email format 
+Given I open the browser
+When I navigate to the resourceful application
+And I enter user name "mytest$outlook.com"
+And click on login button
+Then error message "Invalid email" should be displayed
+
 Scenario: user attempt to login without password
 Given I open the browser
 When I navigate to the resourceful application
